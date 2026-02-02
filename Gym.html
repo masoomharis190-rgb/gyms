@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Website</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="css.css"> -->
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="service.css">
+    <link rel="stylesheet" href="teem.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="timing.css">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: white;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            background: linear-gradient(135deg, rgba(255, 166, 0, 0.811), black, #020024f4, #000);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, black, orange);
+            border-radius: 2px;
+        }
+
+
+        .heading {
+            font-size: 50px;
+        }
+
+
+
+
+        span {
+            -webkit-text-stroke: 1px white;
+        }
+
+
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgb(255, 166, 0), black, #000, #000);
+            display: flex;
+            backdrop-filter: blur(3px);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            /* Top pe dikhane ke liye */
+            transition: opacity 0.5s ease;
+            /* Smooth fade effect */
+        }
+
+        .spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid orange;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+
+
+        a {
+            color: white;
+        }
+
+        #oper i {
+            position: relative;
+            top: 12px;
+            color: white;
+            font-size: 15px;
+
+        }
+
+        #oper {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            text-align: center;
+            border: 1px solid white;
+            z-index: 100000;
+            background: orange;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            animation: 3s flat infinite;
+        }
+
+        @keyframes flat {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+                /* filter: drop-shadow(10px 20px 20px orange); */
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+
+
+        .what {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100000;
+            width: 70px;
+            height: 70px;
+            background-image: url("waht.png");
+            background-position: center;
+            background-size: cover;
+            cursor: pointer;
+        }
+
+        @media (max-width: 412px) {
+            nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #000;
+                padding: 20px;
+            }
+
+
+        }
+
+
+        .location {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            position: fixed;
+            z-index: 100000;
+            align-items: center;
+            justify-content: space-around;
+            background: #000000ad;
+            backdrop-filter: blur(3px);
+            top: 0;
+            left: 0;
+        }
+
+        .location.active {
+            display: flex;
+        }
+
+        .location a {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            border-radius: 5px;
+            background: red;
+            color: white;
+            position: absolute;
+            top: 50px;
+            right: 20px;
+        }
+
+        .location #i {
+            position: relative;
+            top: 7px;
+        }
+
+        .location .loc {
+            width: 500px;
+            height: 400px;
+            background: #fff;
+        }
+
+
+        #menuBtn {
+            color: white;
+            font-size: 26px;
+            cursor: pointer;
+            display: none;
+        }
+
+
+        @media (max-width: 412px) {
+
+            #menuBtn {
+                display: block;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #000;
+                padding: 20px;
+                gap: 15px;
+                animation: slideDown .3s ease;
+            }
+
+            nav a {
+                font-size: 18px;
+                padding: 10px 0;
+                border-bottom: 1px solid #222;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+ 
+
+
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="oper">
+        <a href="#main"><i class="fa-solid fa-arrow-up"></i></a>
+    </div>
+    <div> <a class="what" href="https://wa.me/ 0312 3399370?text=Welcome!%20To%20Omega Fitness Club%20Chats"
+            target="_blank"></a></div>
+
+    <header>
+        <div class="logo">
+            <img src="logo1.png" alt="">
+        </div>
+
+        <i class="fa-solid fa-bars" id="menuBtn"></i>
+
+
+        <nav id="nav">
+            <a href="#main">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Service</a>
+            <a href="#" id="location">location</a>
+            <a href="#team">Team</a>
+            <a class="con" href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <div id="main">
+
+        <div class="left">
+            <h1>Build Your <span>Perfect Body</span></h1>
+            <p>Join Omega Fitnees Gym and transform your body with professional trainers, modern equipment, and a
+                motivating environment.</p>
+            <div class="social">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://www.youtube.com/@omegafitnessclub/shorts"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://wa.me/ 0312 3399370?text=Welcome!%20To%20Omega Fitness Club%20Chats" target="_blank"><i
+                        class="fa-brands fa-whatsapp"></i></a>
+            </div>
+            <button id="Join">Join Now</button>
+        </div>
+        <div class="contact" id="contact">
+            <a href=""> <i id="i" class="fa-solid fa-x"></i>
+            </a>
+            <form id="contactForm">
+                <input type="text" name="user_name" placeholder="Your Name" required>
+                <input type="email" name="user_email" placeholder="Email" required>
+                <textarea name="message" rows="5" placeholder="Message" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+
+        </div>
+
+        <div class="right">
+            <!-- Right image div -->
+        </div>
+    </div>
+
+    <section id="about">
+
+        <div class="left">
+            <!-- <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1470&auto=format&fit=crop" alt=""> -->
+        </div>
+        <div class="rigt">
+            <h3>Why <span>Choose Us?</span></h3>
+            <br>
+            <h4>Safe Bodybuilding & Proper Solutions.</h4>
+            <p>At Omega Fitness, we don't just provide machines; we provide a lifestyle. Our gym is designed to maximize
+                your potential with scientifically proven methods and elite coaching.</p>
+
+
+            <br>
+            <h5>Whether you want to lose weight, build muscle, or improve endurance, we have the right plan for you.
+            </h5>
+            <br>
+
+            <div class="about-features">
+                <div class="feature"><i class="fa-solid fa-dumbbell"></i> Premium Equipment</div>
+                <div class="feature"><i class="fa-solid fa-user-graduate"></i> Expert Trainers</div>
+                <div class="feature"><i class="fa-solid fa-heart-pulse"></i> Cardio Center</div>
+                <div class="feature"><i class="fa-solid fa-bowl-food"></i> Diet Plans</div>
+            </div>
+
+            <a href="#contact" class="btn">Read More</a>
+        </div>
+
+    </section>
+
+    <section id="services">
+        <h2 class="heading">Our <span>Services</span></h2>
+
+        <div class="services-container">
+            <div class="service-box">
+                <i class="fa-solid fa-dumbbell"></i>
+                <h3>Weight Lifting</h3>
+                <p>Heavy duty equipment for professional bodybuilders and beginners alike to build massive strength.</p>
+            </div>
+
+            <div class="service-box">
+                <i class="fa-solid fa-person-running"></i>
+                <h3>Cardio & Fitness</h3>
+                <p>Treadmills, ellipticals, and HIIT zones to boost your stamina and burn calories fast.</p>
+            </div>
+
+            <div class="service-box">
+                <i class="fa-solid fa-dumbbell"></i>
+                <h3>Yoga & Meditation</h3>
+                <p>Relax your mind and improve flexibility with our daily morning and evening yoga sessions.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="team">
+        <h2 class="heading">Expert <span>Trainers</span></h2>
+
+        <div class="team-container">
+            <div class="team-box">
+                <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=1374&auto=format&fit=crop"
+                    alt="Trainer 1">
+                <div class="team-info">
+                    <h4>ZAMIN BRO</h4>
+                    <p>Muscle Expert</p>
+                </div>
+            </div>
+
+            <div class="team-box">
+                <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=1374&auto=format&fit=crop"
+                    alt="Trainer 2">
+                <div class="team-info">
+                    <h4>HARIS kHAN</h4>
+                    <p>Cardio Specialist</p>
+                </div>
+            </div>
+
+            <div class="team-box">
+                <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=1374&auto=format&fit=crop"
+                    alt="Trainer 3">
+                <div class="team-info">
+                    <h4>SHAZAIB BRO</h4>
+                    <p>Crossfit Coach</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Omega<span>Fitness</span></h3>
+                <p>The best place to build your body and mind. Join us today and start your journey.</p>
+                <div class="soocial">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#main">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Services</a>
+                <a href="#" id="location">location</a>
+                <a href="#team">Our Team</a>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p class="pl"><i class="fa-solid fa-location-dot"></i>City, Hirabad, Near Mira School, Gate, Hyderabad, 71000</p>
+                <p><i class="fa-solid fa-phone"></i>0312 3399370</p>
+                <p><i class="fa-solid fa-envelope"></i> info@omegafitness.com</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 Omega Fitness. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <div class="location" id="mapModal">
+        <a href=""> <i id="i" class="fa-solid fa-x"></i>
+        </a>
+        <div class="time">
+            <div class="center">
+                <h3>Working Hours</h3>
+
+                <p><span class="day">Monday</span> <span class="hour"> 9 am–11:30 pm</span></p>
+                <p><span class="day">Tuesday</span> <span class="hour">9 am–11:30 pm</span></p>
+                <p><span class="day">Wednesday</span> <span class="hour">9 am–11:30 pm</span></p>
+                <p><span class="day">Thursday</span> <span class="hour">9 am–11:30 pm</span></p>
+                <p class="off"><span class="day">Friday</span> <span class="hour">Closed</span></p>
+                <p><span class="day">Saturday</span> <span class="hour">9 am–11:30 pm</span></p>
+                <p><span class="day">Sunday</span> <span class="hour">9 am–11:30 pm</span></p>
+            </div>
+        </div>
+
+        <div class="loc">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2965.7342749357567!2d68.3682096!3d25.407145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x394c713f642a3f53%3A0x20c40c01618200ab!2sOmega%20Fitness%20Club!5e1!3m2!1sen!2s!4v1769868093773!5m2!1sen!2s"
+                width="100%" height="100%" style="border:0;" loading="lazy">
+            </iframe>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+
+<script>
+    // JavaScript for Loader Timing
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            var loader = document.getElementById('loader');
+            loader.style.opacity = '0'; // Smooth hide
+            setTimeout(function () {
+                loader.style.display = 'none'; // Completely remove
+            }, 500); // 0.5s match with transition
+        }, 2000); // 3000ms = 3 seconds
+    });
+</script>
+
+<script>
+    const locationBtn = document.getElementById("location");
+    const mapModal = document.getElementById("mapModal");
+    const cut = document.getElementById("i");
+
+    locationBtn.addEventListener("click", () => {
+        mapModal.classList.add("active");
+    });
+
+    mapModal.addEventListener("click", (e) => {
+        if (e.target === mapModal) {
+            mapModal.classList.remove("active");
+        }
+    });
+
+    cut.addEventListener("click", () => {
+        mapModal.classList.remove("active");
+    });
+</script>
+
+
+<script>
+    const Join = document.getElementById("Join");
+    const contact = document.getElementById("contact");
+    const cutt = document.getElementById("cut");
+
+    Join.addEventListener("click", () => {
+        contact.classList.add("active");
+    });
+
+    cut.addEventListener("click", () => {
+        contact.classList.remove("active");
+    });
+</script>
+
+
+<script>
+    const menuBtn = document.getElementById("menuBtn");
+    const nav = document.getElementById("nav");
+
+    menuBtn.addEventListener("click", () => {
+        nav.classList.toggle("active");
+
+        // icon change
+        menuBtn.classList.toggle("fa-bars");
+        menuBtn.classList.toggle("fa-xmark");
+    });
+</script>
+
+
+</html>
